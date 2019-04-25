@@ -36,32 +36,32 @@ public class BinaryTree<E> {
     }
 
     /** Accessor for node data */
-    public E getData() {  // FILL IN RETURN TYPE
+    public E getData() { 
 	return data;
     }
 
     /** Accessor for left child */
-    public BinaryTree<E> getLeft() {  // FILL IN RETURN TYPE
+    public BinaryTree<E> getLeft() {
 	return left;
     }
 
     /** Accessor for right child */
-    public BinaryTree<E> getRight() {  // FILL IN RETURN TYPE
+    public BinaryTree<E> getRight() {
 	return right;
     }
 
     /** Manipulator for node data */
-    public void setData(E data) {  // FILL IN ARGUMENT TYPE
+    public void setData(E data) {
 	this.data = data;
     }
 
     /** Manipulator for left child */
-    public void setLeft(BinaryTree<E> left) {  // FILL IN ARGUMENT TYPE
+    public void setLeft(BinaryTree<E> left) {
 	this.left = left;
     }
 
     /** Manipulator for right child */
-    public void setRight(BinaryTree<E> right) {  // FILL IN ARGUMENT TYPE
+    public void setRight(BinaryTree<E> right) {
 	this.right = right;
     }
 
@@ -72,14 +72,12 @@ public class BinaryTree<E> {
 
     /** Determines whether this tree is a leaf */
     public boolean isLeaf() {
-	return (left == null);
-	// EDIT ABOVE
+	return (left == null && right == null);
     }
 
     /** Determines whether this tree is a branch */
     public boolean isBranch() {
-	return (left != null);
-	// EDIT ABOVE
+	return (left != null || right != null);
     }
 
     /** 
@@ -113,6 +111,11 @@ public class BinaryTree<E> {
 	    indent(2*depth);
 	    System.out.print("Left:  ");
 	    left.printIndented(depth);
+	    }
+	if (right != null) {
+	    indent(2*depth);
+	    System.out.print("Right:  ");
+	    right.printIndented(depth);
+		}
 	}
-    }
 }
