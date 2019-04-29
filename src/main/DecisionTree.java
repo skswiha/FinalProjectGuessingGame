@@ -9,18 +9,14 @@ public class DecisionTree extends BinaryTree<String> {
 	}
 	
 	public String followPath(String text){
-		boolean inPath = true;
 		int location = 0;
 		BinaryTree<String> nowAt = this;
-		while(inPath == true) {
-			if(location < text.length() && text.charAt(location) == 'Y') {
-				nowAt = this.getLeft();
+		while(nowAt != null && location < text.length() ) {
+			if(text.charAt(location) == 'Y') {
+				nowAt = nowAt.getLeft();
 			}
-			else if(location < text.length() && text.charAt(location) == 'N') {
-				nowAt = this.getRight();
-			}
-			else {
-				inPath = false;
+			else if(text.charAt(location) == 'N') {
+				nowAt = nowAt.getRight();
 			}
 			location++;
 		}
@@ -32,23 +28,44 @@ public class DecisionTree extends BinaryTree<String> {
 		}
 	}
 	
-	public void fillTree(BufferedReader in) throws IOException {
-		String line = "";
+	public BinaryTree<String> follow(String text){
+		int location = 0;
+		BinaryTree<String> nowAt = this;
+		while(nowAt != null && location < text.length() ) {
+			if(text.charAt(location) == 'Y') {
+				nowAt = nowAt.getLeft();
+			}
+			else if(text.charAt(location) == 'N') {
+				nowAt = nowAt.getRight();
+			}
+			location++;
+		}
+		return nowAt;
+	}
+	
+	public void insertLineFromFile(String yns, String question) {
+		// find node based on yns in loop
+		//insert question
 		BinaryTree<String> current = this;
-		int countLeft = 0;
-		int countRight = 0;
+		current = follow(yns.substring(0, yns.length() - 1));
+		if (yns.charAt(yns.length()-1) == 'Y') {
+			current.setLeft(new BinaryTree<String>(question));
+		}
+		else if (yns.charAt(yns.length()-1) == 'N') {
+			current.setRight(new BinaryTree<String>(question));		
+		}
+		
+	}
+
+	
+	public void fillTree(BufferedReader in) throws IOException {
+		String[] words;
+		String line = "";
 		for (int i = 0; i < 12; ++i) {
 			line = in.readLine();
-			if (line != null && line.charAt(countLeft) == 'Y') {
-				current.setLeft(new BinaryTree<String>(line));
-				countLeft++;
-			}
-			else if (line != null && line.charAt(countRight) == 'N') {
-				current.setRight(new BinaryTree<String>(line));
-				countRight++;
-				current = current.getLeft();
-			}
-			
+			if (line == null) break;
+			words = line.split(" ");
+			insertLineFromFile(words[0], line);
 		}
 	}
 }

@@ -114,7 +114,7 @@ public class BinaryTree<E> {
 	    }
 	if (right != null) {
 	    indent(2*depth);
-	    System.out.print("Right:  ");
+	    System.out.print("Right: ");
 	    right.printIndented(depth);
 		}
 	}
