@@ -8,6 +8,7 @@ public class AnimalGuess {
 		Scanner stan = new Scanner(System.in);
 		String currentPath = "";
 		BufferedReader in = null;
+		BufferedWriter out = null;
 		DecisionTree tree = null;
 		String answer;
 		try {
@@ -15,7 +16,7 @@ public class AnimalGuess {
 			tree = new DecisionTree(in.readLine());
 			tree.fillTree(in);
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("File Not Found");
 		}
 		boolean correct = true;
 		boolean playing = true;
@@ -54,21 +55,28 @@ public class AnimalGuess {
 		}
 		if (correct) {
 			System.out.println("I guessed it!");
-			playAgain();
 		}
 		else {
-			
+			try {
+				out = new BufferedWriter(new FileWriter("AnimalTree.txt", true));
+				tree.learn(tree, currentPath, out);
+				out.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		stan.close();	
+		playAgain();
+		stan.close();
 	}
 	
 	public static void playAgain() {
 		Scanner stan = new Scanner(System.in);
 		System.out.println("Play Again?");
-		stan.nextLine().toLowerCase();
-		if (stan.nextLine().toLowerCase().contains("yes")) {
+		String answer = stan.next().toLowerCase();
+		if (answer.contains("yes")) {
 			main(new String[0]);
 		}
 		stan.close();
 	}
+	
 }

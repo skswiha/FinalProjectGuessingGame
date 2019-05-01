@@ -1,6 +1,7 @@
 package main;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class DecisionTree extends BinaryTree<String> {
 	
@@ -61,11 +62,33 @@ public class DecisionTree extends BinaryTree<String> {
 	public void fillTree(BufferedReader in) throws IOException {
 		String[] words;
 		String line = "";
-		for (int i = 0; i < 12; ++i) {
+		for (int i = 0; i < 100; ++i) {
 			line = in.readLine();
 			if (line == null) break;
 			words = line.split(" ");
 			insertLineFromFile(words[0], line);
 		}
 	}
-}
+	
+	public void learn(DecisionTree tree, String currentPath, BufferedWriter out) throws IOException {
+		Scanner stan = new Scanner(System.in);
+		String animal, question, yesorno;
+		currentPath = currentPath.substring(0, currentPath.length()-1);
+		System.out.println("What was your animal?");
+		animal = stan.nextLine();
+		System.out.println("Type a yes or no question that would distinguish between a " + animal + " and a " + tree.followPath(currentPath).split(" ")[1]);
+		question = stan.nextLine();
+		System.out.println("Would you answer yes to this question for the " + animal + "?");
+		yesorno = stan.nextLine().toLowerCase();
+		out.append("\n" + currentPath + " " + question);
+		if (yesorno.contains("yes")) {
+			out.append("\n" + currentPath + "N " + tree.followPath(currentPath).split(" ")[1]);
+			out.append("\n" + currentPath + "Y " + animal);
+		}
+		else {
+			out.append("\n" + currentPath + "Y " + tree.followPath(currentPath).split(" ")[1]);
+			out.append("\n" + currentPath + "N " + animal);
+			}
+	}
+	
+} 

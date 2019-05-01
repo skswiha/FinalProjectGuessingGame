@@ -11,3 +11,6 @@ YNY Is it in the dog family?
 YNN Mouse
 YNYY Dog
 YNYN Cat
+YYN Does it have stripes?
+YYNN Horse
+YYNY Zebra
