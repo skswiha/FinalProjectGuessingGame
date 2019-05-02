@@ -77,11 +77,11 @@ public class DecisionTree extends BinaryTree<String> {
 	public void fillTree(BufferedReader in) throws IOException {
 		String[] words;
 		String line = "";
-		for (int i = 0; i < 100; ++i) {
-			line = in.readLine();
-			if (line == null) break;
+		line = in.readLine();
+		while (line != null) {
 			words = line.split(" ");
 			insertLineFromFile(words[0], line);
+			line = in.readLine();
 		}
 	}
 	
@@ -92,22 +92,28 @@ public class DecisionTree extends BinaryTree<String> {
 	 * @param BufferedWriter to use to add information */
 	public void learn(DecisionTree tree, String currentPath, BufferedWriter out) throws IOException {
 		Scanner stan = new Scanner(System.in);
-		String animal, question, yesorno;
+		String userObject, question, yesorno;
 		currentPath = currentPath.substring(0, currentPath.length()-1);
-		System.out.println("What was your animal?");
-		animal = stan.nextLine();
-		System.out.println("Type a yes or no question that would distinguish between a " + animal + " and a " + tree.followPath(currentPath).split(" ")[1]);
+		System.out.println("What were you thinking of?");
+		userObject = stan.nextLine();
+		userObject = userObject.substring(0,1).toUpperCase() + userObject.substring(1);
+
+		System.out.println("Type a yes or no question that would distinguish between a " + userObject + " and a " + tree.followPath(currentPath).split(" ")[1]);
 		question = stan.nextLine();
-		System.out.println("Would you answer yes to this question for the " + animal + "?");
+		question = question.substring(0,1).toUpperCase() + question.substring(1);
+		if(question.substring(question.length()-1) != "?") {
+			question += "?";
+		}
+		System.out.println("Would you answer yes to this question for the " + userObject + "?");
 		yesorno = stan.nextLine().toLowerCase();
 		out.append("\n" + currentPath + " " + question);
 		if (yesorno.contains("yes")) {
 			out.append("\n" + currentPath + "N " + tree.followPath(currentPath).split(" ")[1]);
-			out.append("\n" + currentPath + "Y " + animal);
+			out.append("\n" + currentPath + "Y " + userObject);
 		}
 		else {
 			out.append("\n" + currentPath + "Y " + tree.followPath(currentPath).split(" ")[1]);
-			out.append("\n" + currentPath + "N " + animal);
+			out.append("\n" + currentPath + "N " + userObject);
 			}
 	}
 	

@@ -14,3 +14,48 @@ YNYN Cat
 YYN Does it have stripes?
 YYNN Horse
 YYNY Zebra
+NN Is it an amphibian?
+NNN Mosquito
+NNY Frog
+NNN Is it an insect?
+NNNY Mosquito
+NNNN Spider
+NNY Do they start as tadpoles?
+NNYY Frog
+NNYN Salamander
+NY Is it usually bigger than a person?
+NYY Crocodile
+NYN Lizard
+NYN Does it have legs?
+NYNY Lizard
+NYNN Snake
+NNNN Is it a bird?
+NNNNN Spider
+NNNNY Owl
+NNNNY Is it a symbol of peace?
+NNNNYN Owl
+NNNNYY Dove
+NNNNN Does it live in water?
+NNNNNN Spider
+NNNNNY Fish
+YNN Can it fly?
+YNNN Mouse
+YNNY Bat
+YNNN Could it kill a person?
+YNNNN Mouse
+YNNNY Bear
+NNNY Does it suck blood?
+NNNYY Mosquito
+NNNYN Fly
+NNNYN Does it make honey?
+NNNYNN Fly
+NNNYNY Bee
+YNNNN Would someone set a trap for it in their home?
+YNNNNY Mouse
+YNNNNN Hamster
+YYNN Do people ride them?
+YYNNY Horse
+YYNNN Deer
+NNNNYN Can it often be found in cities?
+NNNNYNN Owl
+NNNNYNY Pigeon
